@@ -167,61 +167,66 @@ enum Prefs {
 }
 
 enum MetadataPrefs {
-
+    
     static func register() {
         ud.register(defaults: [_setMovieFormat, _setTVShowFormat,
                                _movieImporter, _movieiTunesStoreLanguage,
                                _tvShowImporter, _tvShowiTunesStoreLanguage,
                                _tvShowTheTVDBLanguage, _tvShowTheMovieDBLanguage,
-                               _keepEmptyAnnotations, _keepImportedFilesMetadata])
+                               _keepEmptyAnnotations, _keepImportedFilesMetadata,
+                               _youTubeAPIKey])
     }
-
+    
     @StoredCodable(key: "SBMovieFormatTokens", defaultValue: [Token(text: "{Name}")])
     static var movieFormatTokens: [Token]
-
+    
     @StoredCodable(key: "SBTVShowFormatTokens", defaultValue: [Token(text: "{TV Show}"), Token(text: " s", isPlaceholder: false), Token(text: "{TV Season}"), Token(text: "e", isPlaceholder: false), Token(text: "{TV Episode #}")])
     static var tvShowFormatTokens: [Token]
-
-
+    
+    
     @Stored(key: "SBSetMovieFormat", defaultValue: false)
     static var setMovieFormat: Bool
-
+    
     @Stored(key: "SBSetTVShowFormat", defaultValue: false)
     static var setTVShowFormat: Bool
-
-
+    
+    
     @Stored(key: "SBMetadataPreference|Movie", defaultValue: "TheMovieDB")
     static var movieImporter: String
-
+    
     @Stored(key: "SBMetadataPreference|Movie|iTunes Store|Language", defaultValue: "USA (English)")
     static var movieiTunesStoreLanguage: String
-
+    
     @Stored(key: "SBMetadataPreference|Movie|TheMovieDB|Language", defaultValue: "en")
     static var movieLanguage: String
-
-
+    
+    
     @Stored(key: "SBMetadataPreference|TV", defaultValue: "TheTVDB")
     static var tvShowImporter: String
-
+    
     @Stored(key: "SBMetadataPreference|TV|iTunes Store|Language", defaultValue: "USA (English)")
     static var tvShowiTunesStoreLanguage: String
-
+    
     @Stored(key: "SBMetadataPreference|TV|TheTVDB|Language", defaultValue: "en")
     static var tvShowTheTVDBLanguage: String
-
+    
     @Stored(key: "SBMetadataPreference|TV|TheMovieDB|Language", defaultValue: "en")
     static var tvShowTheMovieDBLanguage: String
-
-
+    
+    
     @StoredCodable(key: "SBMetadataMovieResultMap2", defaultValue: MetadataResultMap.movieDefaultMap)
     static var movieResultMap: MetadataResultMap
-
+    
     @StoredCodable(key: "SBMetadataTvShowResultMap2", defaultValue: MetadataResultMap.tvShowDefaultMap)
     static var tvShowResultMap: MetadataResultMap
-
+    
     @Stored(key: "SBMetadataKeepEmptyAnnotations", defaultValue: false)
     static var keepEmptyAnnotations: Bool
-
+    
     @Stored(key: "SBFileImporterImportMetadata", defaultValue: false)
     static var keepImportedFilesMetadata: Bool
+    
+    @Stored(key: "YouTubeAPIKey", defaultValue: "")
+    static var youTubeAPIKey: String
+
 }

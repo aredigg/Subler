@@ -17,6 +17,9 @@ class MetadataPrefsViewController : NSViewController, NSTableViewDelegate, NSTab
     @IBOutlet var tableView: NSTableView!
 
     @IBOutlet var typesController: NSArrayController!
+    
+    @IBOutlet var youtubeApiKeyTextField: NSTextField!
+    
     @objc var types: [String]
 
     var movieMap: MetadataResultMap
@@ -98,6 +101,8 @@ class MetadataPrefsViewController : NSViewController, NSTableViewDelegate, NSTab
             s.tableView.reloadData()
             s.builtInTokenField.stringValue = s.currentTokens.reduce("", { "\($0)/\($1)" })
         }
+        
+        youtubeApiKeyTextField.stringValue = MetadataPrefs.youTubeAPIKey
     }
 
     private func save() {
@@ -136,6 +141,11 @@ class MetadataPrefsViewController : NSViewController, NSTableViewDelegate, NSTab
         }
         map.items.sort(by: sort)
         tableView.reloadData()
+        save()
+    }
+    
+    @IBAction func youtubeApiKeyChanged(_ sender: NSTextField) {
+        MetadataPrefs.youTubeAPIKey = sender.stringValue
         save()
     }
 
